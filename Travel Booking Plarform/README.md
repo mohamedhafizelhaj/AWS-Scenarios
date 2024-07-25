@@ -9,8 +9,8 @@ TravelGuru is a startup aiming to build an innovative travel booking platform. T
 5. **Global Reach:** The platform should be accessible to users worldwide with low latency.
 6. **Data Analytics:** Insights into user behavior, popular destinations, and booking patterns are needed.
 
-## Overview
-This scenario outlines the architecture for TravelGuru, a scalable and secure travel booking platform. The solution leverages AWS services to meet requirements for scalability, performance, cost-effectiveness, and global reach.
+## The proposed solution
+This scenario outlines the architecture for TravelGuru, a scalable and secure travel booking platform. The solution leverages AWS services to meet requirements for security, scalability, performance, cost-effectiveness, and global reach.
 
 ## Architecture Components
 - **Search Functionality:** Amazon CloudSearch with scheduled indexing using CloudWatch.
@@ -23,27 +23,25 @@ This scenario outlines the architecture for TravelGuru, a scalable and secure tr
 
 ## Detailed Solution
 1. **Search Functionality:** 
-   - Use Amazon CloudSearch to index and search travel data.
-   - Schedule indexing during low-traffic periods using CloudWatch.
+Use Amazon CloudSearch to index and search travel data. We can also use CloudWatch Alarms to trigger a lambda function when the traffic is below a specified threshold, the lambda function will use CloudSearch SDK to index the website data.
 
 2. **Database:** 
-   - Utilize Amazon Aurora Serverless V2 for a scalable and cost-efficient relational database.
+Utilize Amazon Aurora Serverless V2 cluster to provide a scalable, highly available and cost-efficient relational database. By using a serverless model, we can take away the overhead of manually scaling up the database instance in response to an anticipated traffic surge.
 
 3. **Back-end Logic:** 
-   - Implement CRUD operations using AWS Lambda functions to handle back-end processing.
+Implement CRUD operations using AWS Lambda functions to handle back-end processing. The back-end logic consists of a number of operations that can easily be devided into standalone lambda function, to further get advantage of serverless computing.
 
 4. **Global Reach:** 
-   - Deploy the front-end on S3 and use CloudFront for global content delivery.
+Deploy the front-end on S3 and use CloudFront for global content delivery.
 
 5. **API Gateway:** 
-   - Choose REST API for caching and advanced features, ensuring high performance and security.
+This is to connect our front-end and back-end. Here we have a tradeoff between choosing REST API for advanced features like caching, or HTTP API for simple API features and reduced cost. I thing choosing REST API for caching will ensure high performance which is a critical factor if the global reach requirement is taken into account.
 
 6. **Data Analytics:** 
-   - Use Amazon QuickSight to create an admin dashboard for analyzing user behavior, popular destinations, and booking patterns.
+Use Amazon QuickSight to create an admin dashboard for analyzing user behavior, popular destinations, and booking patterns.
 
 7. **Security Measures:** 
-   - Apply Object Access Control (OAC) for S3 buckets.
-   - Use IAM roles with least privilege and set permission boundaries for components.
+We can apply Object Access Control (OAC) for S3 buckets and use IAM roles with least privilege and set permission boundaries for components.
 
 ## Conclusion
 This architecture demonstrates how to build a robust, scalable, and secure travel booking platform using AWS services, aligning with best practices for AWS Solutions Architects.
