@@ -12,7 +12,7 @@ TravelGuru is a startup aiming to build an innovative travel booking platform. T
 ## The proposed solution
 This scenario outlines the architecture for TravelGuru, a scalable and secure travel booking platform. The solution leverages AWS services to meet requirements for security, scalability, performance, cost-effectiveness, and global reach.
 
-## Architecture Components
+### Architecture Components
 - **Search Functionality:** Amazon CloudSearch with scheduled indexing using CloudWatch.
 - **Database:** Amazon Aurora Serverless V2 for handling data with various resouce needs.
 - **Back-end Logic:** Serverless Lambda functions for CRUD operations.
@@ -21,7 +21,7 @@ This scenario outlines the architecture for TravelGuru, a scalable and secure tr
 - **Data Analytics:** Amazon QuickSight for creating an admin dashboard to analyze user behavior and booking patterns.
 - **Security:** Implementation of OAC for S3, appropriate IAM roles, and permission boundaries.
 
-## Detailed Solution
+### Detailed Solution
 1. **Search Functionality:** 
 Use Amazon CloudSearch to index and search travel data. We can also use CloudWatch Alarms to trigger a lambda function when the traffic is below a specified threshold, the lambda function will use CloudSearch SDK to index the website data.
 
